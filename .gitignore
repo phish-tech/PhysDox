@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments / uv
+.venv/
+venv/
+env/
+ENV/
+
+# Caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.cache/
+
+# Local environment / secrets
+.env
+.env.local
+*.local
+
+# Runtime outputs (per CONTRIBUTING.md, do not commit)
+data/
+experiments/
+tmp/
+checkpoints/
+logs/
+*.log
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

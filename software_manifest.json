@@ -1,0 +1,240 @@
+{
+  "archive": "3919_PhysDox_Benchmarking_LLMs_Software_camera_ready.zip",
+  "audit_commands": [
+    "uv run python scripts/audit_experiments.py --root <data-archive>/experiment_outputs/experiments/main_20260510_main",
+    "uv run python scripts/audit_response_format.py --root <data-archive>/experiment_outputs/experiments/main_20260510_main",
+    "uv run python scripts/export_main_results_table.py --root <data-archive>/experiment_outputs/experiments/main_20260510_main --output ./reproduced_tables"
+  ],
+  "cli_entrypoints": [
+    "benchmark-two-stage-eval",
+    "benchmark-evaluate",
+    "benchmark-experiment",
+    "benchmark-generate",
+    "benchmark-rebalance"
+  ],
+  "created_at_utc": "2026-08-26T09:50:55.339632+00:00",
+  "excluded": [
+    "data/",
+    "experiments/",
+    "dist/",
+    "tmp/",
+    ".git/",
+    ".env",
+    "runtime outputs",
+    "checkpoints",
+    "logs",
+    "source workbooks",
+    "review spreadsheets"
+  ],
+  "expected_paired_data_archive": "3919_PhysDox_Benchmarking_LLMs_Data.zip",
+  "file_count": 40,
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "c016d9e6ff6d53236f8f15947b854db065e0625a38d8f58660879b13a7273185",
+      "size_bytes": 544
+    },
+    {
+      "path": ".python-version",
+      "sha256": "02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398",
+      "size_bytes": 5
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "522910bd539e86f4c198122fde72c76394fb7ba53dd56a845b3263da9ec3d1f1",
+      "size_bytes": 534
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "4fbd6e38f92cca3a51f2546fdb5725712a80fc6cd235caadb899ddac7331f048",
+      "size_bytes": 935
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "27d237cb28acaf8440b67eb3d93d305fc636697943831517224c34611a4a6010",
+      "size_bytes": 1106
+    },
+    {
+      "path": "LICENSE-DATA",
+      "sha256": "0094c63376d932ccdefdbde356c2f194cff8acacb18ac50835d99c109d38de34",
+      "size_bytes": 557
+    },
+    {
+      "path": "QUICKSTART.md",
+      "sha256": "edb70d536030163f28decc0a91c70a6055e7d88ec45c8a13807ca06c3c1c8069",
+      "size_bytes": 2684
+    },
+    {
+      "path": "README.md",
+      "sha256": "96f7f9edf40174e1cd83162ee4b34673cbccf57c165697185df8431102ede309",
+      "size_bytes": 1681
+    },
+    {
+      "path": "REPRODUCIBILITY.md",
+      "sha256": "aaa3a4037cdf549b34428d3d11990ce0620eb5b0c18b5ffa78f75f8bd07d30e0",
+      "size_bytes": 2399
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "6eedae1c356d3666dc7c207c934c0050d899109cddb5d5bdcfba3417fd85c72e",
+      "size_bytes": 1442
+    },
+    {
+      "path": "scripts/audit_experiments.py",
+      "sha256": "88d6337ed2a877940aae40a3f22196bfe725301105523f8ac2240379bbcf1521",
+      "size_bytes": 5575
+    },
+    {
+      "path": "scripts/audit_release.py",
+      "sha256": "ee3088559c3ffa2e8d817d19ae93c4c4ebde2bb283651d75271dc727dfa7c052",
+      "size_bytes": 3946
+    },
+    {
+      "path": "scripts/audit_response_format.py",
+      "sha256": "5873635c54a85ee07c7b6e2c3e3f6c755c0e8a9889c8a8512f37ee9032743760",
+      "size_bytes": 10054
+    },
+    {
+      "path": "scripts/audit_silver_construction_bias.py",
+      "sha256": "ebb13c4b3d7ce7351e5ca4a77802f667cb99de6176d84b06cc21966b85691a37",
+      "size_bytes": 10591
+    },
+    {
+      "path": "scripts/audit_submission_archives.py",
+      "sha256": "5c0ed5215b24c782b49e71a9c0a72a00b4d05b39b944d689c1548caf6a3e0943",
+      "size_bytes": 18626
+    },
+    {
+      "path": "scripts/audit_table_drop.py",
+      "sha256": "86754004be09729c377e61ee15604249728bdc106307968145ad4f2ec8f7c580",
+      "size_bytes": 6049
+    },
+    {
+      "path": "scripts/build_submission_software_archive.py",
+      "sha256": "d7835e70dab7130d630a689a9f671a485d408f9e2bc77a5d83fe31dd23603d68",
+      "size_bytes": 5553
+    },
+    {
+      "path": "scripts/export_main_results_table.py",
+      "sha256": "60dae017d8a8d3399a6467f20c0c060d6ff54ac6b48233a6f75f36dfc0bcc21e",
+      "size_bytes": 28039
+    },
+    {
+      "path": "scripts/prepare_resume_checkpoint.py",
+      "sha256": "5f7457b932d415ace7449f88669f851544f60ae939109c1be0b35dd01f326fc6",
+      "size_bytes": 4542
+    },
+    {
+      "path": "src/hallucination_benchmark/__init__.py",
+      "sha256": "62c69ff3999ca21b511f120a8f5efb2d3748a39d3ac78ae0d37232df4f07d864",
+      "size_bytes": 58
+    },
+    {
+      "path": "src/hallucination_benchmark/build_5k_dataset.py",
+      "sha256": "e5fc17c7fa2cbca4a41b6feb7579bfa6db688e7076ff73b72f0aaf8f649fb00d",
+      "size_bytes": 30165
+    },
+    {
+      "path": "src/hallucination_benchmark/clean_rebuild_5k.py",
+      "sha256": "6f763fe71ba02e53c0dfc4ce4094ae7127f514d9c0dc03f61436dbb87b2ae095",
+      "size_bytes": 32442
+    },
+    {
+      "path": "src/hallucination_benchmark/config.py",
+      "sha256": "06f347eefb5350495872ba3084f7329f5e7d5210ff1b77e2c8ce9cf6fcb623a9",
+      "size_bytes": 5676
+    },
+    {
+      "path": "src/hallucination_benchmark/evaluator.py",
+      "sha256": "37b222d4ef5a66563b0bdd96ecaacc60d8743f541b97acb9c0f809004ca27418",
+      "size_bytes": 14399
+    },
+    {
+      "path": "src/hallucination_benchmark/experiment.py",
+      "sha256": "726586c4bf152254d9c8c308f5d58c779e76ae9709762e6452acdc4768b7c862",
+      "size_bytes": 12844
+    },
+    {
+      "path": "src/hallucination_benchmark/generator.py",
+      "sha256": "016d5514794ee7e78c8b05abfa79d0a6973b6c0a21ae4067789a3cc6a4f7360b",
+      "size_bytes": 32208
+    },
+    {
+      "path": "src/hallucination_benchmark/gold_tools.py",
+      "sha256": "f7e49d38dc796e294de8464fbd4f35ca05cc8a8a4076ae1b9ac2ca7ac0e4e83e",
+      "size_bytes": 25263
+    },
+    {
+      "path": "src/hallucination_benchmark/incremental_generator.py",
+      "sha256": "22f97ea126a315b64945d9d853906bcbda16641f7e6cf63e55dbb1978adea406",
+      "size_bytes": 10949
+    },
+    {
+      "path": "src/hallucination_benchmark/llm_client.py",
+      "sha256": "dc06bc12ee7445693034fcfdbc2a51394e43d7768212559cfa21f51a91522629",
+      "size_bytes": 6975
+    },
+    {
+      "path": "src/hallucination_benchmark/main_experiment_plan.py",
+      "sha256": "b34df0cc87de7246659f8dfd7ff84082d2052ffdaba516c8de8b02c860d030c0",
+      "size_bytes": 4152
+    },
+    {
+      "path": "src/hallucination_benchmark/metrics.py",
+      "sha256": "42590a33b3698a7551e1fd082346bd12d549c24220e51b6972c4d546bdcf5706",
+      "size_bytes": 2866
+    },
+    {
+      "path": "src/hallucination_benchmark/mitigation_smoke.py",
+      "sha256": "198975f53800fb2c5fed4eaf3008710aaa14a380bc06293f226a8bd5103e423b",
+      "size_bytes": 18369
+    },
+    {
+      "path": "src/hallucination_benchmark/rebalance.py",
+      "sha256": "3facef57d5152c36740a68d8a385c7f14e811cc027b833ff4bc152dce807f65e",
+      "size_bytes": 25060
+    },
+    {
+      "path": "src/hallucination_benchmark/rule_checkers.py",
+      "sha256": "4b40752f42f06dd0e2c4544312ec1ee2c18148ac9612249cdb621570dc5d33a1",
+      "size_bytes": 12978
+    },
+    {
+      "path": "src/hallucination_benchmark/sample_for_review.py",
+      "sha256": "0c675222059c26b9ba25ed7695a97248fbe623ca623b1376d689e375d2000121",
+      "size_bytes": 10313
+    },
+    {
+      "path": "src/hallucination_benchmark/schema.py",
+      "sha256": "f6f18db80e94a5ebbf16996e6f57d7c2d1fe3f18662af9d20cb5eb3b6d6ef67b",
+      "size_bytes": 4727
+    },
+    {
+      "path": "src/hallucination_benchmark/two_stage_eval.py",
+      "sha256": "b210ccb1620f05135706e8b0500aa968a6d1a83d102cb20c05dd4bae4e7e96c7",
+      "size_bytes": 49510
+    },
+    {
+      "path": "src/hallucination_benchmark/unify_format.py",
+      "sha256": "08b22e8b2b0edf8732e4eb0e297c0057daa0ff250e8899de6492d31f9dfd251a",
+      "size_bytes": 6142
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "e5303401344c6837ad4fd2dd6627f9619662bfdb49ee5c30778591c4ee3e2a02",
+      "size_bytes": 1719
+    }
+  ],
+  "included_docs": [
+    "README.md",
+    "QUICKSTART.md",
+    "REPRODUCIBILITY.md"
+  ],
+  "included_roots": [
+    "src/hallucination_benchmark",
+    "scripts"
+  ],
+  "project": "PhysDox",
+  "purpose": "EMNLP Findings camera-ready software upload",
+  "scope": "evaluation software, audit scripts, quickstart, and reproducibility docs"
+}

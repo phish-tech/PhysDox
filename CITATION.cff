@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite the associated paper and this repository."
+title: "PhysDox: Benchmarking LLMs on Physical Feasibility Auditing of Physiological Sensing Protocols"
+type: dataset
+doi: "10.48550/arXiv.2606.05003"
+date-released: 2026-05-19
+license: "MIT AND CC-BY-4.0"
+authors:
+  - given-names: "He"
+    family-names: "Liu"
+  - given-names: "Boyuan"
+    family-names: "Gu"
+  - given-names: "Shuaiqi"
+    family-names: "Cheng"
+  - given-names: "Haiyang"
+    family-names: "Sun"
+  - given-names: "Siyu"
+    family-names: "You"
+  - given-names: "Xuming"
+    family-names: "Hu"
+repository-code: "https://github.com/phish-tech/PhysDox"
+abstract: "A benchmark for evaluating whether language models can detect physically impossible or hardware-infeasible biomedical and sensing protocols."
