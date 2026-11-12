@@ -50,9 +50,9 @@ uv run python scripts/export_main_results_table.py \
 
 The repository holds code only. The data and outputs are on Hugging Face:
 
-- `phish-tech/PhysDox` (public): Silver 5k, Gold dev subset (100 items), aggregate results for all
+- `phishphish/PhysDox` (public): Silver 5k, Gold dev subset (100 items), aggregate results for all
   48 runs, per-item outputs for the 24 Silver runs, and the result tables.
-- `phish-tech/PhysDox-Gold` (gated): the full Gold 683 set and per-item outputs for the 24 Gold runs.
+- `phishphish/PhysDox-Gold` (gated): the full Gold 683 set and per-item outputs for the 24 Gold runs.
 
 The experiment audit needs per-item files for all 48 runs. Without Gold access, audit the Silver runs only.
 

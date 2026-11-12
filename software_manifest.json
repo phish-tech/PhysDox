@@ -61,17 +61,17 @@
     },
     {
       "path": "QUICKSTART.md",
-      "sha256": "b955e50cb58c91084f409a8ea69c22098d2a674c276b0c64e90eb5a669b77faf",
+      "sha256": "288637fe654b1f7755e72725fa2137ffe41cf3cf5696734ef3038aa2cc51beb0",
       "size_bytes": 2838
     },
     {
       "path": "README.md",
-      "sha256": "6385f6bff682e3ef4f395486bb7e53f5b4ac3c5a4994723d0bb967467b496cab",
+      "sha256": "bf06f09027a8e6635ad0e5ae5d698bca42085c4f459e58cb0e857410579d9620",
       "size_bytes": 7032
     },
     {
       "path": "REPRODUCIBILITY.md",
-      "sha256": "d68c2ae4ec2e7441b353eb321131af5d0177a2c21ae06278c7009691282b0577",
+      "sha256": "ac1fec2c4b9222fc15044f12fe5bccc1e825e273488c1340e0d67647f12eee64",
       "size_bytes": 2624
     },
     {

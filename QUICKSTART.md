@@ -15,15 +15,15 @@ uv sync
 ## 2. Download the data
 
 ```bash
-huggingface-cli download phish-tech/PhysDox --repo-type dataset --local-dir ../physdox_data
+huggingface-cli download phishphish/PhysDox --repo-type dataset --local-dir ../physdox_data
 ```
 
 This gives the Silver set, the Gold dev subset, all aggregate results, and the per-item
 outputs of the 24 Silver runs. The per-item outputs of the 24 Gold runs contain Gold labels
-and are in the gated repository `phish-tech/PhysDox-Gold`. After access is granted:
+and are in the gated repository `phishphish/PhysDox-Gold`. After access is granted:
 
 ```bash
-huggingface-cli download phish-tech/PhysDox-Gold --repo-type dataset --local-dir ../physdox_gold
+huggingface-cli download phishphish/PhysDox-Gold --repo-type dataset --local-dir ../physdox_gold
 cp -r ../physdox_gold/experiment_outputs/* ../physdox_data/experiment_outputs/
 ```
 

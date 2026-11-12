@@ -6,8 +6,8 @@
 
 [![Paper](https://img.shields.io/badge/Paper-Findings%20of%20EMNLP%202026-b31b1b)](https://aclanthology.org/2026.findings-emnlp.264/)
 [![arXiv](https://img.shields.io/badge/arXiv-2606.05003-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2606.05003)
-[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-PhysDox-ffcc4d)](https://huggingface.co/datasets/phish-tech/PhysDox)
-[![Gold](https://img.shields.io/badge/%F0%9F%94%92%20Gold%20set-request%20access-orange)](https://huggingface.co/datasets/phish-tech/PhysDox-Gold)
+[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-PhysDox-ffcc4d)](https://huggingface.co/datasets/phishphish/PhysDox)
+[![Gold](https://img.shields.io/badge/%F0%9F%94%92%20Gold%20set-request%20access-orange)](https://huggingface.co/datasets/phishphish/PhysDox-Gold)
 [![Code License](https://img.shields.io/badge/code-MIT-blue)](LICENSE)
 [![Data License](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey)](LICENSE-DATA)
 
@@ -60,7 +60,7 @@ PhysDox measures whether a model can catch it.
 ## Results
 
 Stage-1 macro-F1 (%), best of four strategies (zero-shot, CoT, self-consistency, tool-augmented) per model.
-Full tables are in the [data repository](https://huggingface.co/datasets/phish-tech/PhysDox); see also [LEADERBOARD.md](LEADERBOARD.md).
+Full tables are in the [data repository](https://huggingface.co/datasets/phishphish/PhysDox); see also [LEADERBOARD.md](LEADERBOARD.md).
 
 | Model | Gold | Silver |
 |---|---:|---:|
@@ -76,12 +76,12 @@ Full tables are in the [data repository](https://huggingface.co/datasets/phish-t
 ```python
 from datasets import load_dataset
 
-silver   = load_dataset("phish-tech/PhysDox", "silver",   split="train")  # 5,000 items
-gold_dev = load_dataset("phish-tech/PhysDox", "gold_dev", split="train")  # 100 items with labels
+silver   = load_dataset("phishphish/PhysDox", "silver",   split="train")  # 5,000 items
+gold_dev = load_dataset("phishphish/PhysDox", "gold_dev", split="train")  # 100 items with labels
 ```
 
 The full 683-item Gold set is **gated** so that it stays out of training data and the Gold numbers stay
-trustworthy. [Request access](https://huggingface.co/datasets/phish-tech/PhysDox-Gold) with your affiliation
+trustworthy. [Request access](https://huggingface.co/datasets/phishphish/PhysDox-Gold) with your affiliation
 and intended use. Gold may be used for evaluation only. It may not be used for training or redistributed.
 
 ## Quick start
@@ -96,7 +96,7 @@ uv run benchmark-two-stage-eval --help
 Audit the released model outputs, no API key needed:
 
 ```bash
-huggingface-cli download phish-tech/PhysDox --repo-type dataset --local-dir ../physdox_data
+huggingface-cli download phishphish/PhysDox --repo-type dataset --local-dir ../physdox_data
 uv run python scripts/audit_experiments.py \
   --root ../physdox_data/experiment_outputs/experiments/main_20260510_main
 ```
