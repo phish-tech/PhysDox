@@ -647,6 +647,16 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
+    missing = [p.parent.name for p in sorted(args.root.glob("*/summary.json"))
+               if not (p.parent / "per_item_results.jsonl").exists()]
+    if missing:
+        raise SystemExit(
+            f"{len(missing)} runs have no per_item_results.jsonl (e.g. {missing[0]}).\n"
+            "The Gold per-item outputs are in the gated repo phishphish/PhysDox-Gold. Copy its "
+            "experiment_outputs/ into this directory, or use the ready-made tables in "
+            "experiment_outputs/experiments/main_20260510_main/tables/ of phishphish/PhysDox."
+        )
+
     summaries = load_summaries(args.root)
     if len(summaries) != 48:
         raise SystemExit(f"Expected 48 main runs, found {len(summaries)}")

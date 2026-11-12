@@ -1,27 +1,31 @@
 [project]
-name = "hallucination-benchmark"
+name = "physdox"
 version = "0.1.0"
-description = "Hardware-Grounded Hallucination Benchmark - evaluating LLM physical reasoning"
+description = "PhysDox: benchmark for physical feasibility auditing of physiological sensing protocols"
 requires-python = ">=3.11"
 dependencies = [
     "openpyxl>=3.1.5",
 ]
 
+[project.optional-dependencies]
+plots = ["matplotlib>=3.8", "pandas>=2.0"]
+
 [project.scripts]
-benchmark-generate = "hallucination_benchmark.generator:main"
+physdox-eval = "hallucination_benchmark.two_stage_eval:main"
+benchmark-generate = "hallucination_benchmark.construction.generator:main"
 benchmark-evaluate = "hallucination_benchmark.evaluator:main"
-benchmark-rebalance = "hallucination_benchmark.rebalance:main"
-benchmark-sample-review = "hallucination_benchmark.sample_for_review:main"
-benchmark-experiment = "hallucination_benchmark.experiment:main"
-benchmark-build-5k = "hallucination_benchmark.build_5k_dataset:main"
-benchmark-clean-rebuild-5k = "hallucination_benchmark.clean_rebuild_5k:main"
-benchmark-import-gold = "hallucination_benchmark.gold_tools:import_gold_main"
-benchmark-build-gold-confusing = "hallucination_benchmark.gold_tools:build_confusing_main"
-benchmark-build-gold-final = "hallucination_benchmark.gold_tools:build_final_gold_main"
-benchmark-build-gold-final-core = "hallucination_benchmark.gold_tools:build_final_core_main"
+benchmark-rebalance = "hallucination_benchmark.construction.rebalance:main"
+benchmark-sample-review = "hallucination_benchmark.construction.sample_for_review:main"
+benchmark-experiment = "hallucination_benchmark.construction.experiment:main"
+benchmark-build-5k = "hallucination_benchmark.construction.build_5k_dataset:main"
+benchmark-clean-rebuild-5k = "hallucination_benchmark.construction.clean_rebuild_5k:main"
+benchmark-import-gold = "hallucination_benchmark.construction.gold_tools:import_gold_main"
+benchmark-build-gold-confusing = "hallucination_benchmark.construction.gold_tools:build_confusing_main"
+benchmark-build-gold-final = "hallucination_benchmark.construction.gold_tools:build_final_gold_main"
+benchmark-build-gold-final-core = "hallucination_benchmark.construction.gold_tools:build_final_core_main"
 benchmark-two-stage-eval = "hallucination_benchmark.two_stage_eval:main"
-benchmark-mitigation-smoke = "hallucination_benchmark.mitigation_smoke:main"
-benchmark-main-plan = "hallucination_benchmark.main_experiment_plan:main"
+benchmark-mitigation-smoke = "hallucination_benchmark.construction.mitigation_smoke:main"
+benchmark-main-plan = "hallucination_benchmark.construction.main_experiment_plan:main"
 
 [build-system]
 requires = ["hatchling"]

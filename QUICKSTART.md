@@ -1,10 +1,8 @@
 # Quickstart
 
-These commands audit the released PhysDox outputs without calling any hosted model API.
-
 ## 1. Install
 
-The package needs Python 3.11 or newer.
+Python 3.11 or newer and [uv](https://docs.astral.sh/uv/).
 
 ```bash
 git clone https://github.com/phish-tech/PhysDox.git
@@ -12,51 +10,62 @@ cd PhysDox
 uv sync
 ```
 
-## 2. Download the data
+## 2. Check your setup without an API key
 
 ```bash
-huggingface-cli download phishphish/PhysDox --repo-type dataset --local-dir ../physdox_data
+uv run python examples/mock_llm_server.py &      # or run it in a second terminal
+export LLM_API_KEY=dummy LLM_BASE_URL=http://127.0.0.1:8765/v1 LLM_MODEL_NAME=mock
+uv run physdox-eval --data gold_dev --model custom --stage1-only
 ```
 
-This gives the Silver set, the Gold dev subset, all aggregate results, and the per-item
-outputs of the 24 Silver runs. The per-item outputs of the 24 Gold runs contain Gold labels
-and are in the gated repository `phishphish/PhysDox-Gold`. After access is granted:
+The mock model answers at random. The scores mean nothing, but a result table means the data download,
+prompting, parsing, and metrics all work. PowerShell users: `$env:LLM_API_KEY="dummy"`, and so on.
+
+## 3. Evaluate a real model
+
+Any OpenAI-compatible endpoint works. Put the credentials in the environment or in a local `.env`
+file (git-ignored).
 
 ```bash
-huggingface-cli download phishphish/PhysDox-Gold --repo-type dataset --local-dir ../physdox_gold
-cp -r ../physdox_gold/experiment_outputs/* ../physdox_data/experiment_outputs/
+export LLM_API_KEY=sk-...  LLM_BASE_URL=https://your-endpoint/v1  LLM_MODEL_NAME=your-model
+
+uv run physdox-eval --data gold_dev --model custom --stage1-only
+uv run physdox-eval --data silver --model custom --max-items 500 --sample-seed 0
+uv run physdox-eval --data silver --model custom --strategy cot --concurrency 8 --rpm 60
 ```
 
-Layout after downloading:
+- `--data`: `silver`, `gold_dev`, `gold` (gated, set `HF_TOKEN`), or a JSON path/URL. Files are cached in `~/.cache/physdox`.
+- `--strategy`: `zero-shot`, `cot`, `self-cons`, `tool-aug`.
+- Without `--stage1-only`, true fatal items also go through Stage 2 diagnosis.
+- Output goes to `experiments/<run>/` (or `--output-dir`). To make an interrupted run resumable, pass
+  `--output-dir` and repeat the same command. If your provider returns 429 or 502 errors, lower `--concurrency` and `--rpm`.
 
-```text
-physdox_data/
-  silver/physdox_silver_5000.json
-  gold_dev/physdox_gold_dev_100.json
-  experiment_outputs/experiments/main_20260510_main/
-    silver5k_twostage_<model>_<strategy>/     # summary, confusion matrices, per-item outputs
-    gold683_twostage_<model>_<strategy>/      # summary and confusion matrices (per-item: gated)
-    tables/
-```
-
-## 3. Audit the released outputs
-
-The experiment audit expects per-item files for all 48 runs, so it needs the Gold outputs too.
-Without Gold access, audit only the Silver runs by pointing `--root` at a copy that has only the
-`silver5k_*` directories.
+## 4. Audit the released outputs
 
 ```bash
+hf download phishphish/PhysDox --repo-type dataset --local-dir ../physdox_data
 uv run python scripts/audit_experiments.py \
   --root ../physdox_data/experiment_outputs/experiments/main_20260510_main
 uv run python scripts/audit_response_format.py \
   --root ../physdox_data/experiment_outputs/experiments/main_20260510_main
 ```
 
-The response-format audit exits with status 1 on purpose. It reports 9 unparseable individual
-votes among 149,574 self-consistency samples across four Gold runs. The aggregate predictions of
-those runs are complete.
+The public repository holds the per-item outputs of the 24 Silver runs. The 24 Gold runs' per-item files
+contain Gold labels and are in the gated repository `phishphish/PhysDox-Gold`. Without them the audit shows
+0 items for the Gold runs. After access is granted:
 
-## 4. Export the paper tables
+```bash
+hf download phishphish/PhysDox-Gold --repo-type dataset --local-dir ../physdox_gold
+cp -r ../physdox_gold/experiment_outputs/* ../physdox_data/experiment_outputs/
+```
+
+The response-format audit exits with status 1 on purpose. It reports 9 unparseable individual votes among
+149,574 self-consistency samples across four Gold runs. The aggregate predictions of those runs are complete.
+
+## 5. Tables and figures
+
+The ready-made paper tables are in `physdox_data/experiment_outputs/experiments/main_20260510_main/tables/`.
+To rebuild them from raw outputs (needs the Gold per-item files):
 
 ```bash
 uv run python scripts/export_main_results_table.py \
@@ -64,23 +73,10 @@ uv run python scripts/export_main_results_table.py \
   --output ./reproduced_tables
 ```
 
-## 5. Evaluate your own model
-
-Any OpenAI-compatible endpoint works. Set the credentials in a local `.env` file, which is git-ignored.
+To redraw the README charts from the public tables:
 
 ```bash
-LLM_API_KEY=...
-LLM_BASE_URL=https://your-openai-compatible-endpoint/v1
-LLM_MODEL_NAME=your-model-name
-
-uv run benchmark-two-stage-eval \
-  --data ../physdox_data/silver/physdox_silver_5000.json \
-  --model custom \
-  --strategy zero-shot \
-  --concurrency 8 \
-  --rpm 60 \
-  --retries 5
+uv run --extra plots python scripts/make_result_figures.py
 ```
 
-Strategies are `zero-shot`, `cot`, `self-cons`, and `tool-aug`. Provider behavior changes over
-time, so the released per-item outputs are the reference for the paper numbers.
+Provider behavior changes over time, so the released per-item outputs are the reference for the paper numbers.

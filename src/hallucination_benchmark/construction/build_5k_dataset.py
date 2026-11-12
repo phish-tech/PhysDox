@@ -34,11 +34,11 @@ from hallucination_benchmark.config import (
     get_model_config,
 )
 from hallucination_benchmark.evaluator import RateLimiter
-from hallucination_benchmark.generator import _generate_one_protocol, _inject_one_sabotage, assign_difficulty
+from hallucination_benchmark.construction.generator import _generate_one_protocol, _inject_one_sabotage, assign_difficulty
 from hallucination_benchmark.llm_client import llm_call, llm_json_call
 from hallucination_benchmark.rule_checkers import run_checks
-from hallucination_benchmark.sample_for_review import export_xlsx, load_eval_results, stratified_sample
-from hallucination_benchmark.schema import make_clean_for_output, make_item
+from hallucination_benchmark.construction.sample_for_review import export_xlsx, load_eval_results, stratified_sample
+from hallucination_benchmark.construction.schema import make_clean_for_output, make_item
 
 ROOT = ROOT_DIR
 DATA_DIR = CURRENT_DATA_DIR

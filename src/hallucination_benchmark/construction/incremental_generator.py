@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 
 from hallucination_benchmark.config import OUTPUT_DIR, SEED_DATA_DIR, get_model_config
-from hallucination_benchmark.generator import (
+from hallucination_benchmark.construction.generator import (
     load_seed_data,
     _generate_one_protocol,
     _inject_one_sabotage,
@@ -18,7 +18,7 @@ from hallucination_benchmark.generator import (
     _generate_one_negative,
     assign_difficulty,
 )
-from hallucination_benchmark.schema import make_item, make_clean_for_output
+from hallucination_benchmark.construction.schema import make_item, make_clean_for_output
 from hallucination_benchmark.rule_checkers import run_checks
 
 from concurrent.futures import ThreadPoolExecutor, as_completed

@@ -27,12 +27,17 @@
     "review spreadsheets"
   ],
   "expected_paired_data_archive": "3919_PhysDox_Benchmarking_LLMs_Data.zip",
-  "file_count": 44,
+  "file_count": 52,
   "files": [
     {
       "path": ".env.example",
       "sha256": "3e038718efbd6df824cc5d0800f44458d8047b0f6fc1d900c112a2498a046bc5",
       "size_bytes": 567
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "70749e608263483b75395996671fb69a4579000ffa211ac39fa2a79722c72d1c",
+      "size_bytes": 554
     },
     {
       "path": ".python-version",
@@ -50,6 +55,11 @@
       "size_bytes": 968
     },
     {
+      "path": "LEADERBOARD.md",
+      "sha256": "500dac54a7511ed5da5846a07805dc003077807dfc19ac2243cbfd9087fe4181",
+      "size_bytes": 902
+    },
+    {
       "path": "LICENSE",
       "sha256": "37788118c7a1803dea906be0911b78f70792760f9d293e227a767ffcae6cf96b",
       "size_bytes": 1127
@@ -61,173 +71,18 @@
     },
     {
       "path": "QUICKSTART.md",
-      "sha256": "288637fe654b1f7755e72725fa2137ffe41cf3cf5696734ef3038aa2cc51beb0",
-      "size_bytes": 2838
+      "sha256": "812db6140870038d5f19889ec40cb4d20673d612549710854a8d2eb4cbaab681",
+      "size_bytes": 3368
     },
     {
       "path": "README.md",
-      "sha256": "bf06f09027a8e6635ad0e5ae5d698bca42085c4f459e58cb0e857410579d9620",
-      "size_bytes": 7032
+      "sha256": "26fdb25b958c1aa6badace88c6216800f0daea36f6f6aecb85e254eb393d4e71",
+      "size_bytes": 12817
     },
     {
       "path": "REPRODUCIBILITY.md",
       "sha256": "ac1fec2c4b9222fc15044f12fe5bccc1e825e273488c1340e0d67647f12eee64",
       "size_bytes": 2624
-    },
-    {
-      "path": "pyproject.toml",
-      "sha256": "cbba67e20f2497537fd6941e225fb7d9757b2aef050708f43f5b094416c4f31f",
-      "size_bytes": 1473
-    },
-    {
-      "path": "scripts/audit_experiments.py",
-      "sha256": "39fb23c130894c49ad7c24146f51d0cb740c73515f533cac1736d8c2b8181a7b",
-      "size_bytes": 5745
-    },
-    {
-      "path": "scripts/audit_release.py",
-      "sha256": "d6be5ef9725f91e79ff66c6cb519616383cd4d651033f162d44caf0b4296dc2e",
-      "size_bytes": 4095
-    },
-    {
-      "path": "scripts/audit_response_format.py",
-      "sha256": "5cd4c9c3a7c1c3e14470782431b7bb0378ca8ef468b317d85e8e75fd93dd7dfe",
-      "size_bytes": 10325
-    },
-    {
-      "path": "scripts/audit_silver_construction_bias.py",
-      "sha256": "dd9cdb209418bbef7e5b41e6a05086ccc086ddc56ba62d0477bb4c286051f8d8",
-      "size_bytes": 10862
-    },
-    {
-      "path": "scripts/audit_submission_archives.py",
-      "sha256": "f55776992677f44ed10db6750c1e58ddfce2b3b6e04d0acd96d70fc72c9e681a",
-      "size_bytes": 19156
-    },
-    {
-      "path": "scripts/audit_table_drop.py",
-      "sha256": "ca2c2fab6e49250f46657a49ccf2f4657013fc2b990ea59ea4e8d74c5d6547f6",
-      "size_bytes": 6205
-    },
-    {
-      "path": "scripts/build_submission_software_archive.py",
-      "sha256": "ecf78d629ece4db82e04eaf0d2adf8a2aa7248f79d41c85373f5c93e4995b371",
-      "size_bytes": 5730
-    },
-    {
-      "path": "scripts/export_main_results_table.py",
-      "sha256": "0ee2ed0e2b85086b46c462f5d69ac7302492b0f7d252d814c1e46a2960ad6330",
-      "size_bytes": 28721
-    },
-    {
-      "path": "scripts/prepare_resume_checkpoint.py",
-      "sha256": "9fabd63bf40f1ccb57dbdb53aec0c31a38a2bca93dd78ba89f36f4daa7301472",
-      "size_bytes": 4688
-    },
-    {
-      "path": "src/hallucination_benchmark/__init__.py",
-      "sha256": "fb264613d6c9af615d0ad85f00febe44a38055facf906e1eaf4cb82849eccccc",
-      "size_bytes": 60
-    },
-    {
-      "path": "src/hallucination_benchmark/build_5k_dataset.py",
-      "sha256": "7a0180efe59e0a263c707dd377a97b149b341582b9f09e5047aaddb76b720d5f",
-      "size_bytes": 30960
-    },
-    {
-      "path": "src/hallucination_benchmark/clean_rebuild_5k.py",
-      "sha256": "af71857a5e394c7a692b24c56df6047e29dc38a7ff10035c32b6d231757ea22a",
-      "size_bytes": 33304
-    },
-    {
-      "path": "src/hallucination_benchmark/config.py",
-      "sha256": "08c8b758ceee55af457b891b948c84d034f1a341efdfe87788029c18cdfa4683",
-      "size_bytes": 5840
-    },
-    {
-      "path": "src/hallucination_benchmark/evaluator.py",
-      "sha256": "d1fd6e80a0abb08afefbd3f23e7821a9161b919fed651fc2b44bfd882b90db61",
-      "size_bytes": 14783
-    },
-    {
-      "path": "src/hallucination_benchmark/experiment.py",
-      "sha256": "8c7f293335f3113109905adf33976124f7a1c5e025e5f67683379415126c78ce",
-      "size_bytes": 13188
-    },
-    {
-      "path": "src/hallucination_benchmark/generator.py",
-      "sha256": "ea704be2760bbe5a3d2ee4416d2fdae55b2fd8f767225a5fefbad62fce23d98b",
-      "size_bytes": 32988
-    },
-    {
-      "path": "src/hallucination_benchmark/gold_tools.py",
-      "sha256": "aa730dd2ae8f96a4bebda9902311aabad976521e09082b4e45fde8ddfe8b7550",
-      "size_bytes": 25831
-    },
-    {
-      "path": "src/hallucination_benchmark/incremental_generator.py",
-      "sha256": "688819740e1bd97c000578b42c0f8b5d571e2b776660f25a753eb8cf6d5f27c4",
-      "size_bytes": 11231
-    },
-    {
-      "path": "src/hallucination_benchmark/llm_client.py",
-      "sha256": "f2f00c6b4412098cf28117e5aa1c9bfa51f9670baab823036dde825d195b0622",
-      "size_bytes": 7205
-    },
-    {
-      "path": "src/hallucination_benchmark/main_experiment_plan.py",
-      "sha256": "2677107b5891d42dd4e6d50ede1debd2af4e1c1d50333d1df824b0fd9ad81e15",
-      "size_bytes": 4264
-    },
-    {
-      "path": "src/hallucination_benchmark/metrics.py",
-      "sha256": "c2211959f6fecf6c65af0cc96707af57301c186523eda852d693db95a7936585",
-      "size_bytes": 2936
-    },
-    {
-      "path": "src/hallucination_benchmark/mitigation_smoke.py",
-      "sha256": "a70c6f29f058d4c71ce8d56cf44583477f1fd84d2f4efc69a62898a3d3be9293",
-      "size_bytes": 18868
-    },
-    {
-      "path": "src/hallucination_benchmark/rebalance.py",
-      "sha256": "b07a09a43ce3109a07cf16f9d7a32c8902a5a89ddc4f6ac08e5d754e972b1ba4",
-      "size_bytes": 25741
-    },
-    {
-      "path": "src/hallucination_benchmark/rule_checkers.py",
-      "sha256": "f4fcdf962b9e1e2d19bba5f503e539f753438047d405fc75c14b5115e6899508",
-      "size_bytes": 13306
-    },
-    {
-      "path": "src/hallucination_benchmark/sample_for_review.py",
-      "sha256": "7d78b5855118a9bdbef49a0eafccbf14c42e20d324336f9ed414f7aab14fd0da",
-      "size_bytes": 10587
-    },
-    {
-      "path": "src/hallucination_benchmark/schema.py",
-      "sha256": "8e4b3c2bb9bf1a22ab91b2da74dc3810c2fb918c17362ebe664b8e55dafe203f",
-      "size_bytes": 4854
-    },
-    {
-      "path": "src/hallucination_benchmark/two_stage_eval.py",
-      "sha256": "17e2feac99c7f93f8b7f1fd92a73339fd829c5e016ba83dbae0898012859a7ad",
-      "size_bytes": 50743
-    },
-    {
-      "path": "src/hallucination_benchmark/unify_format.py",
-      "sha256": "d53cc4afeadec3580d8f81e156e583d5c56857954e03596b5d2a71215e6a154a",
-      "size_bytes": 6318
-    },
-    {
-      "path": "uv.lock",
-      "sha256": "82435a7155301af5e6291cf3bbb436c33a11353b77e50c1bdc8996df400751ac",
-      "size_bytes": 1754
-    },
-    {
-      "path": "LEADERBOARD.md",
-      "sha256": "500dac54a7511ed5da5846a07805dc003077807dfc19ac2243cbfd9087fe4181",
-      "size_bytes": 902
     },
     {
       "path": "assets/banner.svg",
@@ -248,6 +103,191 @@
       "path": "assets/fig3_false_negatives.png",
       "sha256": "86def45db568b662ec978b3ba0e9b01ce24d6d6641967c38ef1d70b13e30cbdc",
       "size_bytes": 532486
+    },
+    {
+      "path": "assets/results_cascade.png",
+      "sha256": "866bb158a114ef89d08599ddf10fcc79ee59afc83d7cabc611f91fcc760f001a",
+      "size_bytes": 70663
+    },
+    {
+      "path": "assets/results_class_recall.png",
+      "sha256": "70f218b4f4b7475936ec89024c06fb9cf237625ff28ce142fc6ddc52f329f675",
+      "size_bytes": 70680
+    },
+    {
+      "path": "assets/results_stage1_f1.png",
+      "sha256": "d238aa35440e053334e7478d2da11bf64f4ef2699a816b16f265b3de4760967e",
+      "size_bytes": 89436
+    },
+    {
+      "path": "examples/mock_llm_server.py",
+      "sha256": "27b488c58c85f1daaca8515f66f64bd805f3625fed8249294e4fb90dc2e194fa",
+      "size_bytes": 1472
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "606bc366fbf8c8dd84a0f00281006694f2e4ed9762b3e3bb8f891798b8a28184",
+      "size_bytes": 1760
+    },
+    {
+      "path": "scripts/audit_experiments.py",
+      "sha256": "39fb23c130894c49ad7c24146f51d0cb740c73515f533cac1736d8c2b8181a7b",
+      "size_bytes": 5745
+    },
+    {
+      "path": "scripts/audit_response_format.py",
+      "sha256": "5cd4c9c3a7c1c3e14470782431b7bb0378ca8ef468b317d85e8e75fd93dd7dfe",
+      "size_bytes": 10325
+    },
+    {
+      "path": "scripts/audit_silver_construction_bias.py",
+      "sha256": "dd9cdb209418bbef7e5b41e6a05086ccc086ddc56ba62d0477bb4c286051f8d8",
+      "size_bytes": 10862
+    },
+    {
+      "path": "scripts/export_main_results_table.py",
+      "sha256": "d157378577a554b38b9dbdea281e055d080d5cb07bbc4a066cddcdf54672d5c8",
+      "size_bytes": 29302
+    },
+    {
+      "path": "scripts/maintainer/audit_release.py",
+      "sha256": "d6be5ef9725f91e79ff66c6cb519616383cd4d651033f162d44caf0b4296dc2e",
+      "size_bytes": 4095
+    },
+    {
+      "path": "scripts/maintainer/audit_submission_archives.py",
+      "sha256": "f55776992677f44ed10db6750c1e58ddfce2b3b6e04d0acd96d70fc72c9e681a",
+      "size_bytes": 19156
+    },
+    {
+      "path": "scripts/maintainer/audit_table_drop.py",
+      "sha256": "ca2c2fab6e49250f46657a49ccf2f4657013fc2b990ea59ea4e8d74c5d6547f6",
+      "size_bytes": 6205
+    },
+    {
+      "path": "scripts/maintainer/build_submission_software_archive.py",
+      "sha256": "ecf78d629ece4db82e04eaf0d2adf8a2aa7248f79d41c85373f5c93e4995b371",
+      "size_bytes": 5730
+    },
+    {
+      "path": "scripts/make_result_figures.py",
+      "sha256": "af5b85d1b936775a29a21d9bfef8016b3a88bc930de8a0a65330a5b6154300c8",
+      "size_bytes": 6493
+    },
+    {
+      "path": "scripts/prepare_resume_checkpoint.py",
+      "sha256": "9fabd63bf40f1ccb57dbdb53aec0c31a38a2bca93dd78ba89f36f4daa7301472",
+      "size_bytes": 4688
+    },
+    {
+      "path": "src/hallucination_benchmark/__init__.py",
+      "sha256": "fb264613d6c9af615d0ad85f00febe44a38055facf906e1eaf4cb82849eccccc",
+      "size_bytes": 60
+    },
+    {
+      "path": "src/hallucination_benchmark/config.py",
+      "sha256": "08c8b758ceee55af457b891b948c84d034f1a341efdfe87788029c18cdfa4683",
+      "size_bytes": 5840
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/__init__.py",
+      "sha256": "657f9d6a0b6d14befc7a2543efbb7c584e881bf37bfc1ea528a784ab8865f269",
+      "size_bytes": 91
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/build_5k_dataset.py",
+      "sha256": "7d742779c3199e917535aa8fab8fa02c30905d2ec92cc61a05212c2122c3b223",
+      "size_bytes": 30999
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/clean_rebuild_5k.py",
+      "sha256": "2d9ddea177c7cd891a7fa6050255ba46984e1f17eb5fdb00e850f7d6153bbfbb",
+      "size_bytes": 33330
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/experiment.py",
+      "sha256": "8c7f293335f3113109905adf33976124f7a1c5e025e5f67683379415126c78ce",
+      "size_bytes": 13188
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/generator.py",
+      "sha256": "53a103edd5a28639aca569b2bdafc16a34419f5286cd6e07de135cd37c2f5688",
+      "size_bytes": 33001
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/gold_tools.py",
+      "sha256": "aa730dd2ae8f96a4bebda9902311aabad976521e09082b4e45fde8ddfe8b7550",
+      "size_bytes": 25831
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/incremental_generator.py",
+      "sha256": "523dbbd36fe2a115acbfa1e9da8738d45f40261a77ea5637d355d5695962c771",
+      "size_bytes": 11257
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/main_experiment_plan.py",
+      "sha256": "2677107b5891d42dd4e6d50ede1debd2af4e1c1d50333d1df824b0fd9ad81e15",
+      "size_bytes": 4264
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/mitigation_smoke.py",
+      "sha256": "a70c6f29f058d4c71ce8d56cf44583477f1fd84d2f4efc69a62898a3d3be9293",
+      "size_bytes": 18868
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/rebalance.py",
+      "sha256": "e46af5b6ba52fdde73d9d47fabf5baabbd8c8b8d3b0bc6c50f94926f25cebbf2",
+      "size_bytes": 25767
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/sample_for_review.py",
+      "sha256": "7d78b5855118a9bdbef49a0eafccbf14c42e20d324336f9ed414f7aab14fd0da",
+      "size_bytes": 10587
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/schema.py",
+      "sha256": "8e4b3c2bb9bf1a22ab91b2da74dc3810c2fb918c17362ebe664b8e55dafe203f",
+      "size_bytes": 4854
+    },
+    {
+      "path": "src/hallucination_benchmark/construction/unify_format.py",
+      "sha256": "d53cc4afeadec3580d8f81e156e583d5c56857954e03596b5d2a71215e6a154a",
+      "size_bytes": 6318
+    },
+    {
+      "path": "src/hallucination_benchmark/data.py",
+      "sha256": "0f1f4d3082cca97f43ba381af2f66acd912c5752a193e324f93ec186aee8ed0d",
+      "size_bytes": 2710
+    },
+    {
+      "path": "src/hallucination_benchmark/evaluator.py",
+      "sha256": "d1fd6e80a0abb08afefbd3f23e7821a9161b919fed651fc2b44bfd882b90db61",
+      "size_bytes": 14783
+    },
+    {
+      "path": "src/hallucination_benchmark/llm_client.py",
+      "sha256": "f2f00c6b4412098cf28117e5aa1c9bfa51f9670baab823036dde825d195b0622",
+      "size_bytes": 7205
+    },
+    {
+      "path": "src/hallucination_benchmark/metrics.py",
+      "sha256": "c2211959f6fecf6c65af0cc96707af57301c186523eda852d693db95a7936585",
+      "size_bytes": 2936
+    },
+    {
+      "path": "src/hallucination_benchmark/rule_checkers.py",
+      "sha256": "f4fcdf962b9e1e2d19bba5f503e539f753438047d405fc75c14b5115e6899508",
+      "size_bytes": 13306
+    },
+    {
+      "path": "src/hallucination_benchmark/two_stage_eval.py",
+      "sha256": "1a44effa1503bf8724648486beb97bcc51848c24f787517b6e24cd5cd65721c7",
+      "size_bytes": 53081
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "23c970e695547c3feb8a9d31d9793e924caf5e10fd44becb0a0fa9ce81e96ab3",
+      "size_bytes": 221952
     }
   ],
   "included_docs": [

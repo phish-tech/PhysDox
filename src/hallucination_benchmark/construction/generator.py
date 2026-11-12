@@ -42,7 +42,7 @@ from hallucination_benchmark.config import (
     SEED_DATA_DIR,
     get_model_config,
 )
-from hallucination_benchmark.schema import make_item, validate_item, make_clean_for_output, generate_id
+from hallucination_benchmark.construction.schema import make_item, validate_item, make_clean_for_output, generate_id
 from hallucination_benchmark.llm_client import llm_call, llm_json_call
 from hallucination_benchmark.rule_checkers import run_checks
 

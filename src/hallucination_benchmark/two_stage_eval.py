@@ -20,6 +20,7 @@ from datetime import datetime
 from pathlib import Path
 
 from hallucination_benchmark.config import CURRENT_DATA_DIR, EXPERIMENTS_DIR, get_model_config
+from hallucination_benchmark.data import resolve_data
 from hallucination_benchmark.evaluator import RateLimiter
 from hallucination_benchmark.llm_client import extract_json, llm_call
 from hallucination_benchmark.metrics import classification_metrics, top_k_accuracy
@@ -696,11 +697,16 @@ def run_two_stage(
     adaptive_rpm: bool = False,
     adaptive_min_rpm: int | None = None,
     adaptive_max_rpm: int | None = None,
+    sample_seed: int | None = None,
 ) -> dict:
     with data_file.open("r", encoding="utf-8") as f:
         items = json.load(f)
     if max_items is not None:
-        items = items[:max_items]
+        if sample_seed is not None and max_items < len(items):
+            keep = sorted(random.Random(sample_seed).sample(range(len(items)), max_items))
+            items = [items[i] for i in keep]
+        else:
+            items = items[:max_items]
 
     model_cfg = get_model_config(model_key, model_name_override=model_name_override)
     model_name = model_name_override or model_cfg["model"]
@@ -1160,9 +1166,38 @@ def run_two_stage(
     return summary
 
 
+def print_report(summary: dict, out_dir: Path) -> None:
+    """Print a short human-readable result table."""
+    s1 = summary["stage1_problem_detection"]
+    print("\n=== PhysDox result ===")
+    print(f"model: {summary.get('model')}   strategy: {summary['strategy']}   items: {s1['total']}")
+    print(f"Stage 1  accuracy {s1['accuracy']:.1%}   balanced acc {s1['balanced_accuracy']:.1%}   macro-F1 {s1['macro_f1']:.1%}")
+    print(f"{'label':<18}{'precision':>10}{'recall':>9}{'f1':>8}{'support':>9}")
+    for label in LABELS:
+        c = s1["per_class"][label]
+        print(f"{label:<18}{c['precision']:>10.1%}{c['recall']:>9.1%}{c['f1']:>8.1%}{c['support']:>9}")
+    print("confusion (rows = truth, columns = prediction):")
+    cols = LABELS + ["__missing__"]
+    print(f"{'':<18}" + "".join(f"{c[:9]:>11}" for c in cols))
+    for label in LABELS:
+        row = s1["confusion_matrix"][label]
+        print(f"{label:<18}" + "".join(f"{row[c]:>11}" for c in cols))
+    if s1["missing_predictions"]:
+        print(f"note: {s1['missing_predictions']} prediction(s) missing or unparseable")
+    if not summary.get("stage1_only") and summary.get("stage2_three_class_categories"):
+        print(f"Stage 2  3-class accuracy {summary['stage2_three_class_categories']['accuracy']:.1%}"
+              f"   fine accuracy {summary['stage2_fine_constraints']['accuracy']:.1%}"
+              "   (computed on true fatal items)")
+    print(f"details: {out_dir}\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Run two-stage evaluation")
-    parser.add_argument("--data", default=str(DATA_FILE))
+    parser.add_argument(
+        "--data",
+        default="silver",
+        help="'silver' (5,000, default), 'gold_dev' (100), 'gold' (683, gated, needs HF_TOKEN), or a JSON path/URL.",
+    )
     parser.add_argument("--model", default="mimo")
     parser.add_argument("--model-name", default=None)
     parser.add_argument("--strategy", choices=STRATEGIES, default="zero-shot")
@@ -1188,7 +1223,13 @@ def main():
         help="Maximum RPM when --adaptive-rpm recovers (default: --rpm).",
     )
     parser.add_argument("--retries", type=int, default=3)
-    parser.add_argument("--max-items", type=int, default=None)
+    parser.add_argument("--max-items", type=int, default=None, help="Evaluate only this many items.")
+    parser.add_argument(
+        "--sample-seed",
+        type=int,
+        default=None,
+        help="With --max-items: draw a random subset with this seed instead of the first N items.",
+    )
     parser.add_argument("--output-dir", default="")
     parser.add_argument(
         "--allow-missing",
@@ -1197,7 +1238,8 @@ def main():
     )
     args = parser.parse_args()
     summary = run_two_stage(
-        data_file=Path(args.data),
+        data_file=resolve_data(args.data),
+        sample_seed=args.sample_seed,
         model_key=args.model,
         model_name_override=args.model_name,
         strategy=args.strategy,
@@ -1213,6 +1255,7 @@ def main():
         adaptive_min_rpm=args.adaptive_min_rpm,
         adaptive_max_rpm=args.adaptive_max_rpm,
     )
+    print_report(summary, Path(args.output_dir) if args.output_dir else EXPERIMENTS_DIR / summary["experiment_id"])
     print(json.dumps({
         "experiment_id": summary["experiment_id"],
         "strategy": summary["strategy"],
