@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f2a4a"/>
+      <stop offset="1" stop-color="#1f6f8b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" rx="18" fill="url(#bg)"/>
+  <!-- true signal (dashed) and under-sampled alias (solid), the Nyquist violation behind the name -->
+  <path d="M0 215 C 25 125, 50 125, 75 215 S 125 305, 150 215 S 200 125, 225 215 S 275 305, 300 215 S 350 125, 375 215 S 425 305, 450 215 S 500 125, 525 215 S 575 305, 600 215 S 650 125, 675 215 S 725 305, 750 215 S 800 125, 825 215 S 875 305, 900 215 S 950 125, 975 215 S 1025 305, 1050 215 S 1100 125, 1125 215 S 1175 305, 1200 215"
+        fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="2" stroke-dasharray="5 5"/>
+  <path d="M0 215 C 100 110, 200 110, 300 215 S 500 320, 600 215 S 800 110, 900 215 S 1100 320, 1200 215"
+        fill="none" stroke="#7fe0f5" stroke-width="4"/>
+  <g fill="#f5a623">
+    <circle cx="0" cy="215" r="5"/><circle cx="150" cy="215" r="5"/><circle cx="300" cy="215" r="5"/>
+    <circle cx="450" cy="215" r="5"/><circle cx="600" cy="215" r="5"/><circle cx="750" cy="215" r="5"/>
+    <circle cx="900" cy="215" r="5"/><circle cx="1050" cy="215" r="5"/><circle cx="1200" cy="215" r="5"/>
+  </g>
+  <text x="600" y="108" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700" fill="#ffffff">PhysDox</text>
+  <text x="600" y="152" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="25" fill="#e6f4f8">Can LLMs tell when a fluent sensing protocol is physically impossible?</text>
+  <text x="600" y="184" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#bfe3ee">Findings of EMNLP 2026</text>
+</svg>

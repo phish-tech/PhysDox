@@ -2,7 +2,7 @@
 
 ## What Can Be Reproduced Without API Keys
 
-The separate data archive contains:
+The data repositories contain:
 
 - Silver 5k benchmark data.
 - Gold 683 benchmark data.
@@ -36,25 +36,25 @@ complete according to the experiment audit.
 
 ```bash
 uv run python scripts/audit_experiments.py \
-  --root ../data_archive/experiment_outputs/experiments/main_20260510_main
+  --root ../physdox_data/experiment_outputs/experiments/main_20260510_main
 
 uv run python scripts/audit_response_format.py \
-  --root ../data_archive/experiment_outputs/experiments/main_20260510_main
+  --root ../physdox_data/experiment_outputs/experiments/main_20260510_main
 
 uv run python scripts/export_main_results_table.py \
-  --root ../data_archive/experiment_outputs/experiments/main_20260510_main \
+  --root ../physdox_data/experiment_outputs/experiments/main_20260510_main \
   --output ./reproduced_tables
 ```
 
-## Expected Archive Relationship
+## Where The Data Lives
 
-The software archive does not include benchmark data or model outputs. This is
-intentional: the EMNLP submission system provides separate software and data
-uploads. The software archive should be used with the paired data archive:
+The repository holds code only. The data and outputs are on Hugging Face:
 
-```text
-3919_PhysDox_Benchmarking_LLMs_Data.zip
-```
+- `phish-tech/PhysDox` (public): Silver 5k, Gold dev subset (100 items), aggregate results for all
+  48 runs, per-item outputs for the 24 Silver runs, and the result tables.
+- `phish-tech/PhysDox-Gold` (gated): the full Gold 683 set and per-item outputs for the 24 Gold runs.
+
+The experiment audit needs per-item files for all 48 runs. Without Gold access, audit the Silver runs only.
 
 ## Privacy And Exclusions
 

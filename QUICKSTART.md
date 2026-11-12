@@ -1,80 +1,72 @@
 # Quickstart
 
-These commands audit the released PhysDox software and data without calling any
-hosted model API.
+These commands audit the released PhysDox outputs without calling any hosted model API.
 
-## 1. Unpack Archives
+## 1. Install
 
-Use one working directory containing both submitted archives:
-
-```bash
-mkdir physdox_repro
-cd physdox_repro
-unzip /path/to/3919_PhysDox_Benchmarking_LLMs_Software_camera_ready.zip -d software
-unzip /path/to/3919_PhysDox_Benchmarking_LLMs_Data.zip -d data_archive
-cd software
-```
-
-The expected layout is:
-
-```text
-physdox_repro/
-├── software/
-│   ├── src/
-│   ├── scripts/
-│   ├── pyproject.toml
-│   └── uv.lock
-└── data_archive/
-    ├── benchmark_data/
-    └── experiment_outputs/
-```
-
-## 2. Install
+The package needs Python 3.11 or newer.
 
 ```bash
+git clone https://github.com/phish-tech/PhysDox.git
+cd PhysDox
 uv sync
 ```
 
-The package requires Python 3.11 or newer. The submitted `.python-version`
-selects Python 3.13 when that interpreter is available.
-
-## 3. Check CLI Entrypoints
+## 2. Download the data
 
 ```bash
-uv run benchmark-two-stage-eval --help
-uv run python scripts/audit_experiments.py --help
-uv run python scripts/audit_response_format.py --help
-uv run python scripts/export_main_results_table.py --help
+huggingface-cli download phish-tech/PhysDox --repo-type dataset --local-dir ../physdox_data
 ```
 
-## 4. Audit Released Outputs
+This gives the Silver set, the Gold dev subset, all aggregate results, and the per-item
+outputs of the 24 Silver runs. The per-item outputs of the 24 Gold runs contain Gold labels
+and are in the gated repository `phish-tech/PhysDox-Gold`. After access is granted:
+
+```bash
+huggingface-cli download phish-tech/PhysDox-Gold --repo-type dataset --local-dir ../physdox_gold
+cp -r ../physdox_gold/experiment_outputs/* ../physdox_data/experiment_outputs/
+```
+
+Layout after downloading:
+
+```text
+physdox_data/
+  silver/physdox_silver_5000.json
+  gold_dev/physdox_gold_dev_100.json
+  experiment_outputs/experiments/main_20260510_main/
+    silver5k_twostage_<model>_<strategy>/     # summary, confusion matrices, per-item outputs
+    gold683_twostage_<model>_<strategy>/      # summary and confusion matrices (per-item: gated)
+    tables/
+```
+
+## 3. Audit the released outputs
+
+The experiment audit expects per-item files for all 48 runs, so it needs the Gold outputs too.
+Without Gold access, audit only the Silver runs by pointing `--root` at a copy that has only the
+`silver5k_*` directories.
 
 ```bash
 uv run python scripts/audit_experiments.py \
-  --root ../data_archive/experiment_outputs/experiments/main_20260510_main
-
+  --root ../physdox_data/experiment_outputs/experiments/main_20260510_main
 uv run python scripts/audit_response_format.py \
-  --root ../data_archive/experiment_outputs/experiments/main_20260510_main
+  --root ../physdox_data/experiment_outputs/experiments/main_20260510_main
 ```
 
-The released data archive contains the per-item outputs needed for these audits.
-The response-format audit intentionally returns status 1 when it reports known
-individual self-consistency sample parsing failures. In the submitted outputs,
-9 of 149,574 individual samples are unparseable across four Gold runs; the
-self-consistency wrappers and their aggregate predictions remain complete.
+The response-format audit exits with status 1 on purpose. It reports 9 unparseable individual
+votes among 149,574 self-consistency samples across four Gold runs. The aggregate predictions of
+those runs are complete.
 
-## 5. Export Paper-Facing Tables
+## 4. Export the paper tables
 
 ```bash
 uv run python scripts/export_main_results_table.py \
-  --root ../data_archive/experiment_outputs/experiments/main_20260510_main \
+  --root ../physdox_data/experiment_outputs/experiments/main_20260510_main \
   --output ./reproduced_tables
 ```
 
-## 6. Optional Full Model Rerun
+## 5. Evaluate your own model
 
-Full reruns call hosted LLM APIs and require provider credentials. Create a local
-`.env` file or set environment variables for the provider configuration. Example:
+Any OpenAI-compatible endpoint works. Set the credentials in a local `.env` file, which is git-ignored.
 
 ```bash
 LLM_API_KEY=...
@@ -82,7 +74,7 @@ LLM_BASE_URL=https://your-openai-compatible-endpoint/v1
 LLM_MODEL_NAME=your-model-name
 
 uv run benchmark-two-stage-eval \
-  --data ../data_archive/benchmark_data/data/gold/gold_0510_final_full.json \
+  --data ../physdox_data/silver/physdox_silver_5000.json \
   --model custom \
   --strategy zero-shot \
   --concurrency 8 \
@@ -90,6 +82,5 @@ uv run benchmark-two-stage-eval \
   --retries 5
 ```
 
-Model-provider behavior, model availability, and API versions can change over
-time, so the released per-item outputs are the authoritative artifacts for
-auditing the submitted paper results.
+Strategies are `zero-shot`, `cot`, `self-cons`, and `tool-aug`. Provider behavior changes over
+time, so the released per-item outputs are the reference for the paper numbers.
